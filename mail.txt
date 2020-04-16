@@ -1,3 +1,8 @@
+From: %sender_mail%
+To: %receiver_mail%
+Subject: How to program
+Content-type: text/plain; charset="UTF-8";
+
 Привет, %friend_name%! %my_name% приглашает тебя на сайт %website%!
 
 %website% — это новая версия онлайн-курса по программированию. 
