@@ -1,8 +1,16 @@
 import unittest
 
-class TestSendMail(unittest.TestCase):
-    def test_text_contains_dmvn_url(self):
-        self.fail()
+import send_mail
 
-if __name__ == '__main__':
+
+class TestSendMail(unittest.TestCase):
+    def test_mali_contains_url(self):
+        pattern = "%website%"
+        mail_text = "Please register -> %website%"
+        url = "http://www.dvmn.org"
+        mail_for_send = send_mail.get_mail_with_url(mail_text, pattern, url)
+        self.assertIn(url, mail_for_send)
+
+
+if __name__ == "__main__":
     unittest.main()
