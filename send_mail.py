@@ -33,12 +33,13 @@ def send_mails(server, sender_email, template, recipients):
 
 if __name__ == '__main__':
     load_dotenv()
-    sender_email = "param.pampam1@yandex.ru"
+    sender_email = os.environ["EMAIL_ADDRESS"]
     sender_password = os.environ["EMAIL_PASSWORD"]
+    smtp_host = os.environ["SMTP_HOST"]
     recipients = get_recipients_from_file("friends.txt")
     with open('mail.txt', 'r') as f:
         mail_template = f.read()
-    server = smtplib.SMTP_SSL('smtp.yandex.ru:465')
+    server = smtplib.SMTP_SSL(smtp_host)
     server.login(sender_email, sender_password)
     send_mails(server, sender_email, mail_template, recipients)
     server.quit()
