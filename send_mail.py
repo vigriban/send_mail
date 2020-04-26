@@ -1,4 +1,7 @@
+import os
 import smtplib
+from dotenv import load_dotenv
+
 
 def get_mail_text_from_template(mail_text, replace_dict):
     for pattern in replace_dict:
@@ -18,7 +21,7 @@ def get_recipients_from_file(file_name):
 def send_mails(server, sender_email, template, recipients):
     replace_dict = {
         "%website%": "http://www.dvmn.org",
-        "%my_name%": "Виталян",
+        "%my_name%": "Друх",
         "%sender_mail%": sender_email,
     }
     for recipient in recipients:
@@ -29,8 +32,9 @@ def send_mails(server, sender_email, template, recipients):
 
 
 if __name__ == '__main__':
+    load_dotenv()
     sender_email = "param.pampam1@yandex.ru"
-    sender_password = "dbnfkbr83"
+    sender_password = os.environ["EMAIL_PASSWORD"]
     recipients = get_recipients_from_file("friends.txt")
     with open('mail.txt', 'r') as f:
         mail_template = f.read()
